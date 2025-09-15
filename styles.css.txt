@@ -1,0 +1,110 @@
+/* Aurora — styles.css */
+
+:root {
+  --clr-bg: #ffffff;
+  --clr-text: #1e293b;
+  --clr-primary: #7c3aed;
+  --clr-secondary: #06b6d4;
+  --clr-muted: #64748b;
+  --clr-surface: #f1f5f9;
+  --radius: 0.75rem;
+  --shadow: 0 4px 10px rgba(0,0,0,0.08);
+  --transition: all 0.3s ease;
+}
+
+body.dark {
+  --clr-bg: #0f172a;
+  --clr-text: #f1f5f9;
+  --clr-surface: #1e293b;
+  --clr-muted: #94a3b8;
+}
+
+/* Reset */
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+img {max-width: 100%; display: block;}
+a {color: inherit; text-decoration: none;}
+
+/* Container */
+.container {width: 90%; max-width: 1200px; margin: auto;}
+
+/* Header */
+.site-header {
+  position: sticky; top: 0;
+  background: var(--clr-bg);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 0;
+}
+.brand {display: flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.25rem;}
+.nav ul {display: flex; list-style: none; gap: 1rem;}
+.nav a {padding: 0.5rem 0.75rem; border-radius: var(--radius); transition: var(--transition);}
+.nav a:hover {background: var(--clr-surface);}
+.header-controls {display: flex; gap: 0.5rem;}
+.header-controls button {background: none; border: none; font-size: 1.5rem; cursor: pointer;}
+
+/* Hero */
+.hero {padding: 5rem 0;}
+.hero-grid {display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;}
+.hero h1 {font-size: 3rem; margin-bottom: 1rem;}
+.lead {font-size: 1.25rem; color: var(--clr-muted); margin-bottom: 2rem;}
+.cta-row {display: flex; gap: 1rem; margin-bottom: 2rem;}
+.meta {display: flex; gap: 2rem; list-style: none; color: var(--clr-muted);}
+.mock-card {padding: 1rem; background: var(--clr-surface); border-radius: var(--radius); box-shadow: var(--shadow);}
+
+/* Sections */
+.section {padding: 4rem 0;}
+.section.alt {background: var(--clr-surface);}
+.section-title {font-size: 2rem; margin-bottom: 1rem;}
+.section-sub {color: var(--clr-muted); margin-bottom: 2rem;}
+
+/* Features & Services */
+.features, .service-grid {
+  display: grid; gap: 1.5rem; 
+}
+.features {grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));}
+.service-grid {grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));}
+.card {
+  background: var(--clr-surface); padding: 1.5rem; border-radius: var(--radius);
+  box-shadow: var(--shadow); transition: transform 0.2s;
+}
+.card:hover {transform: translateY(-4px);}
+
+/* Projects */
+.filters {display: flex; gap: 1rem; margin-bottom: 2rem;}
+.filter {padding: 0.5rem 1rem; border-radius: var(--radius); border: none; cursor: pointer; background: var(--clr-surface);}
+.filter.active {background: var(--clr-primary); color: #fff;}
+.projects-grid {display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));}
+.project-thumb {height: 150px; border-radius: var(--radius); overflow: hidden;}
+.thumb-gradient {width: 100%; height: 100%; background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));}
+
+/* Contact */
+.contact-grid {display: grid; gap: 2rem; grid-template-columns: 2fr 1fr;}
+.form-row {display: flex; flex-direction: column; margin-bottom: 1rem;}
+input, textarea {
+  padding: 0.75rem; border-radius: var(--radius);
+  border: 1px solid var(--clr-muted); font-size: 1rem; background: var(--clr-bg); color: var(--clr-text);
+}
+.error {color: red; font-size: 0.875rem; height: 1rem;}
+.form-actions {display: flex; gap: 1rem;}
+.form-status {margin-top: 1rem; font-size: 0.9rem;}
+
+/* Buttons */
+.btn {padding: 0.75rem 1.25rem; border-radius: var(--radius); font-weight: 600; text-align: center;}
+.btn-primary {background: var(--clr-primary); color: #fff;}
+.btn-outline {border: 2px solid var(--clr-primary); color: var(--clr-primary);}
+.btn:hover {opacity: 0.9;}
+
+/* Footer */
+.site-footer {background: var(--clr-surface); padding: 2rem 0; margin-top: 2rem;}
+.footer-inner {display: flex; justify-content: space-between; align-items: center;}
+.footer-nav a {margin-left: 1rem; color: var(--clr-muted);}

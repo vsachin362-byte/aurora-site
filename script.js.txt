@@ -1,0 +1,78 @@
+/* Aurora — script.js */
+
+// Dark mode toggle
+const themeToggle = document.getElementById("theme-toggle");
+themeToggle?.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  themeToggle.setAttribute("aria-pressed", isDark);
+  themeToggle.textContent = isDark ? "☀️" : "🌙";
+});
+
+// Mobile nav toggle
+const navToggle = document.getElementById("nav-toggle");
+const nav = document.getElementById("main-nav");
+navToggle?.addEventListener("click", () => {
+  const expanded = navToggle.getAttribute("aria-expanded") === "true";
+  navToggle.setAttribute("aria-expanded", !expanded);
+  nav.classList.toggle("open");
+});
+
+// Project filters
+const filters = document.querySelectorAll(".filter");
+const projects = document.querySelectorAll(".project");
+
+filters.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    filters.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    const filter = btn.dataset.filter;
+
+    projects.forEach((p) => {
+      if (filter === "all" || p.dataset.category === filter) {
+        p.style.display = "block";
+      } else {
+        p.style.display = "none";
+      }
+    });
+  });
+});
+
+// Contact form validation
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let valid = true;
+
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  // Reset errors
+  document.querySelectorAll(".error").forEach(el => el.textContent = "");
+
+  if (name.length < 2) {
+    document.getElementById("err-name").textContent = "Please enter your name.";
+    valid = false;
+  }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    document.getElementById("err-email").textContent = "Please enter a valid email.";
+    valid = false;
+  }
+  if (message.length < 10) {
+    document.getElementById("err-message").textContent = "Message must be at least 10 characters.";
+    valid = false;
+  }
+
+  if (valid) {
+    status.textContent = "✅ Message sent successfully (demo only).";
+    form.reset();
+  } else {
+    status.textContent = "❌ Please fix the errors above.";
+  }
+});
+
+// Footer year
+document.getElementById("year").textContent = new Date().getFullYear();
